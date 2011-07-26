@@ -22,8 +22,11 @@ var client = io
       }
       else if(data.a == 'move')
       {
-        bank[socket.id].x = data.x;
-        bank[socket.id].y = data.y;
+        if(bank[socket.id])
+        {
+          bank[socket.id].x = data.x;
+          bank[socket.id].y = data.y;
+        }
       }
       // append client's socket id to data
       data.id = socket.id;

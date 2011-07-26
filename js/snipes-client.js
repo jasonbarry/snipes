@@ -116,4 +116,4 @@
       return target;
     };
   }
-})('localhost', 3000, './ajax/jsonp.php', 33);
+})('localhost', 3000, '/ajax/jsonp.php', 33);

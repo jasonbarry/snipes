@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 	<head>
-		<title>Snipes.js - Unobtrusive Realtime Mouse Tracking Analytics for Node.js</title>
+		<title>Snipes.js - Unobtrusive Realtime Mouse-Tracking Analytics for Node.js</title>
 		<style>
 		  body {
 		    background: #ccc;
@@ -15,10 +15,10 @@
 	</head>
 	<body>
     <h1>Snipes.js</h1>
-    <h2>Unobtrusive Realtime Mouse Tracking Analytics for Node.js</h2>
-    <em>and it's &lt;2kb!</em>
+    <h2>Unobtrusive Realtime Mouse-Tracking Analytics for Node.js</h2>
+    <em>and it's &lt;4kb!</em>
     
-    <a href="http://github.com/jasonbarry/snipes">
+    <a href="http://github.com/jasonbarry/snipes.js">
       <img src="./unessential/forkme.png" width="149" height="149" alt="Fork me on GitHub" />
     </a>
     
@@ -33,36 +33,13 @@
     <p>Try out the <a href="./admin.html" target="_blank">demo</a> in a new window to see your cursor + the cursors of all other concurrent connections. Try it with two different browsers side by side.</p>
     
     <h3>How to Install</h3>
-    <pre>npm install snipes</pre>
-    <p>or direct download: <a href="snipes.js-0.1.zip">snipes.js-0.1.zip</a></p>
+    <pre>git clone git://github.com/jasonbarry/snipes.js.git</pre>
     
     <h3>How to Use</h3>
     <p>Paste the following right before your <kbd>&lt;/body&gt;</kbd> tag on the page you'd like to observe:</p>
     <pre>&lt;script src="./js/snipes-client.js"&gt;&lt;/script&gt;</pre>
+    <p>Edit the last line of <kbd>snipes-admin.js</kbd> and <kbd>snipes-client.js</kbd> from <kbd>'localhost'</kbd> to the URI of your server.
     <p>Then change the <kbd>src</kbd> attribute of the <kbd>iframe</kbd> in <kbd>admin.html</kbd> to the path of the page you're observing.
-    
-<!--
-    <h3>Options</h3>
-    <p>On the last line of <kbd>snipes-client.js</kbd> you can pass 4 arguments. From left to right, they are the URI, port, path to jsonp file, and max rate.</p>
-    <ol>
-      <li>
-        <pre>URI</pre>
-        <span> - URI address of where node.js server is running. Defaults to <kbd>'localhost'</kbd>.</span>
-      </li>
-      <li>
-        <pre>port</pre>
-        <span> - Port of node.js instance. Note that this must match in the <kbd>server.js</kbd> file as well. Defaults to <kbd>3000</kbd>.</span>
-      </li>
-      <li>
-        <pre>JSONP path</pre>
-        <span> - Path of the <kbd>jsonp.php</kbd> file. Defaults to <kbd>'./ajax/jsonp.php'</kbd>.</span>
-      </li>
-      <li>
-        <pre>max rate</pre>
-        <span> - The number of mousemoves per second that is sent to the server. Be careful with this, you should limit it somewhat so it doesn't pound your server. Defaults to <kbd>20</kbd>.</span>
-      </li>
-    </ol>
--->
     
     <h3>Dependencies</h3>
     <ul>
@@ -78,13 +55,17 @@
         <a href="http://jquery.com/">jQuery</a>
         <span> - JavaScript library, only needed on admin side.</span>
       </li>
+      <li>
+        <span>Recommended but not required: <a href="http://upstart.ubuntu.com/">upstart</a> and <a href="http://mmonit.com/monit/">monit</a>. See <a href="http://howtonode.org/deploying-node-upstart-monit">why</a>.</span>
+      </li>
     </ul>
     
     <h3>Known Issues</h3>
-    <p>This is a pre-beta release, so there might be some bugs. Please report issues on the <a href="http://github.com/jasonbarry/snipes">GitHub</a> page.</p>
+    <p>This is a pre-beta release, so there might be some bugs. Please report issues on the <a href="http://github.com/jasonbarry/snipes.js">GitHub</a> page.</p>
     <ul>
       <li>Admin view can only view one page at a time</li>
       <li>Cursor positions have some issues with scrolling and fluid widths</li>
+      <li>No gui response for click event on admin side</li>
       <li>No touchscreen support</li>
     </ul>
     
