@@ -21,7 +21,7 @@ Try out the [demo](http://ve.kl7xwf7m.vesrv.com/admin.html) in a new window to s
 
   - Paste the following right before your `</body>` tag on the page you'd like to observe:
 
-    <script src="./js/snipes-client.js"></script>
+    &lt;script src="./js/snipes-client.js"&gt;&lt;/script&gt;
     
   - Edit the last line of `snipes-admin.js` and `snipes-client.js` from `'localhost'` to the URI of your server.
   - Change the `src` attribute of the `iframe` in `admin.html` to the path of the page you're observing.
