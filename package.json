@@ -1,0 +1,7 @@
+{ "name": "snipes",
+  "version": "0.0.1",
+  "author": "Jason Barry",
+  "description": "Unobtrusive realtime mouse-tracking analytics for node.js",
+  "homepage": "https://github.com/jasonbarry/snipes.js",
+  "keywords": ["analytics", "mouse tracking", "heatmap"]
+}
