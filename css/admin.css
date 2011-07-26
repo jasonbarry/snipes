@@ -1,0 +1,31 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+section {
+  background: rgba(0, 0, 0, .8);
+  bottom: 0;
+  color: #fff;
+  display: block;
+  padding: 3px 8px;
+  position: fixed;
+  width: 100%;
+  z-index: 2;
+}
+
+iframe {
+  border: none;
+  overflow: none;
+  position: relative;
+}
+
+div {
+  background: url(../img/mouse.png) no-repeat;
+  height: 32px;
+  left: -32px;
+  position: absolute;
+  top: -32px;
+  width: 32px;
+  z-index: 999999;
+}
