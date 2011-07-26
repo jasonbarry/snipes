@@ -1,0 +1,82 @@
+<!doctype html>
+<html>
+	<head>
+		<title>Snipes.js - Unobtrusive Realtime Mouse-Tracking Analytics for Node.js</title>
+		<style>
+		  body {
+		    background: #ccc;
+		  }
+		  img {
+		    position: absolute;
+		    top: 0;
+		    right: 0;
+		  }
+		</style>
+	</head>
+	<body>
+    <h1>Snipes.js</h1>
+    <h2>Unobtrusive Realtime Mouse-Tracking Analytics for Node.js</h2>
+    <em>and it's &lt;4kb!</em>
+    
+    <a href="http://github.com/jasonbarry/snipes.js">
+      <img src="./unessential/forkme.png" width="149" height="149" alt="Fork me on GitHub" />
+    </a>
+    
+    <h3>Features</h3>
+    <ul>
+      <li>Realtime mousemove, click, scroll, resize, connect, and disconnect observers</li>
+      <li>Only broadcast cursor positions to admin, not to other clients. This way visitors won't be bothered with cursor positions they don't care about.</li>
+      <li>Works in Safari 3+, Google Chrome 4+, Firefox 3+, Opera 10.61+, Internet Explorer 5.5+</li>
+    </ul>
+    
+    <h3>Demo</h3>
+    <p>Try out the <a href="./admin.html" target="_blank">demo</a> in a new window to see your cursor + the cursors of all other concurrent connections. Try it with two different browsers side by side.</p>
+    
+    <h3>How to Install</h3>
+    <pre>git clone git://github.com/jasonbarry/snipes.js.git</pre>
+    
+    <h3>How to Use</h3>
+    <p>Paste the following right before your <kbd>&lt;/body&gt;</kbd> tag on the page you'd like to observe:</p>
+    <pre>&lt;script src="./js/snipes-client.js"&gt;&lt;/script&gt;</pre>
+    <p>Edit the last line of <kbd>snipes-admin.js</kbd> and <kbd>snipes-client.js</kbd> from <kbd>'localhost'</kbd> to the URI of your server.
+    <p>Then change the <kbd>src</kbd> attribute of the <kbd>iframe</kbd> in <kbd>admin.html</kbd> to the path of the page you're observing.
+    
+    <h3>Dependencies</h3>
+    <ul>
+      <li>
+        <a href="http://nodejs.org/">Node.js</a>
+        <span> - an event-driven I/O server-side JavaScript environment based on V8.</span>
+      </li>
+      <li>
+        <a href="http://socket.io/">Socket.io</a>
+        <span> - client/server communication leveraging HTML5 WebSockets with a Flash-based fallback.</span>
+      </li>
+      <li>
+        <a href="http://jquery.com/">jQuery</a>
+        <span> - JavaScript library, only needed on admin side.</span>
+      </li>
+      <li>
+        <span>Recommended but not required: <a href="http://upstart.ubuntu.com/">upstart</a> and <a href="http://mmonit.com/monit/">monit</a>. See <a href="http://howtonode.org/deploying-node-upstart-monit">why</a>.</span>
+      </li>
+    </ul>
+    
+    <h3>Known Issues</h3>
+    <p>This is a pre-beta release, so there might be some bugs. Please report issues on the <a href="http://github.com/jasonbarry/snipes.js">GitHub</a> page.</p>
+    <ul>
+      <li>Admin view can only view one page at a time</li>
+      <li>Cursor positions have some issues with scrolling and fluid widths</li>
+      <li>No gui response for click event on admin side</li>
+      <li>No touchscreen support</li>
+    </ul>
+    
+    <h3>Planned Features</h3>
+    <ul>
+      <li>Filter cursors by user agent, referral page, country, language, etc</li>
+      <li>Release JSONP file in more languages than just PHP</li>
+      <li>Live heatmaps ala <a href="http://www.patrick-wied.at/static/heatmapjs/">heatmap.js</a></li>
+      <li>Hosting...?</li>
+    </ul>
+    
+  	<script src="./js/snipes-client.js"></script>
+	</body>
+</html>
