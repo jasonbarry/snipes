@@ -28,9 +28,9 @@
         $('#cursor_'+data.id).data('data', data);
         console.log(data);
       }
-      var concurrent = parseInt($("section span").html());
+      var concurrent = parseInt($("#snipes-concurrent span").html());
       concurrent++;
-      $("section span").html(concurrent);
+      $("#snipes-concurrent span").html(concurrent);
     });
     
     socket.on('move', function(data){
@@ -43,8 +43,8 @@
     
     socket.on('click', function(data){
       $('body').append('<div id="pulse_'+data.id+'" class="snipes-pulse"></div>');
-      $('#pulse_'+data.id).css({ top: (data.y-4)+'px', left: (data.x-3)+'px' })
-                          .animate({ top: (data.y-20)+'px', left: (data.x-19)+'px', width: '32px', height: '32px', opacity: '0' },
+      $('#pulse_'+data.id).css({ top: (data.y-4)+'px', left: (data.x+5)+'px' })
+                          .animate({ top: (data.y-20)+'px', left: (data.x-11)+'px', width: '32px', height: '32px', opacity: '0' },
                                      500, 
                                      function(){
                                        $(this).remove();
@@ -72,7 +72,7 @@
     var frame = document.getElementById("snipes-frame").contentWindow;
     frame.onscroll = function(){
       // select all dots and move them accordingly
-      $("div").each(function(){
+      $("div[id^='cursor_']").each(function(){
         // -6 for centerage
         $(this).css({top: ($(this).data('data').y - frame.pageYOffset - 6)});
       });
