@@ -11,7 +11,7 @@ Unobtrusive Realtime Mouse-Tracking Analytics for Node.js
 
 ## Demo
 
-Try out the [demo](http://ve.kl7xwf7m.vesrv.com/admin.html) in a new window to see your cursor + the cursors of all other concurrent connections. Try it with two different browsers side by side.
+Try out the [demo](http://ve.kl7xwf7m.vesrv.com/) in a new window to see your cursor + the cursors of all other concurrent connections. Try it with two different browsers side by side.
 
 ## How to Install
 
