@@ -42,7 +42,6 @@ This is a pre-beta release, so there might be some bugs. Please report issues on
 
   - Admin view can only view one page at a time
   - Cursor positions have some issues with scrolling and fluid widths
-  - Too many scrollbars on admin iframe
 
 ## Planned Features
 
