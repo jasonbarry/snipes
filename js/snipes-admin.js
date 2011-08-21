@@ -14,7 +14,7 @@
     socket.on('connect', function(data){
       if(data)
       {
-        var cursor = '<div id="cursor_'+data.id+'" title="'+JSON.stringify(data).replace(/"/g, '')+'"></div>';
+        var cursor = '<div id="cursor_'+data.id+'" class="snipes-cursor" title="'+JSON.stringify(data).replace(/"/g, '')+'"></div>';
         $('body').append(cursor);
         // position mice that existed before admin
         if(data.x && data.y)
@@ -42,7 +42,14 @@
     });
     
     socket.on('click', function(data){
-      console.log(data);
+      $('body').append('<div id="pulse_'+data.id+'" class="snipes-pulse"></div>');
+      $('#pulse_'+data.id).css({ top: (data.y-4)+'px', left: (data.x-3)+'px' })
+                          .animate({ top: (data.y-20)+'px', left: (data.x-19)+'px', width: '32px', height: '32px', opacity: '0' },
+                                     500, 
+                                     function(){
+                                       $(this).remove();
+                                     }
+                                   );
     });
     
     socket.on('resize', function(data){
@@ -62,7 +69,7 @@
   
   // scroll cursors with page
   window.onload = function(){
-    var frame = document.getElementById("frame").contentWindow;
+    var frame = document.getElementById("snipes-frame").contentWindow;
     frame.onscroll = function(){
       // select all dots and move them accordingly
       $("div").each(function(){

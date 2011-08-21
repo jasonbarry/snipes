@@ -1,9 +1,4 @@
-* {
-  margin: 0;
-  padding: 0;
-}
-
-section {
+#snipes-concurrent {
   background: rgba(0, 0, 0, .8);
   bottom: 0;
   color: #fff;
@@ -14,13 +9,13 @@ section {
   z-index: 2;
 }
 
-iframe {
+#snipes-frame {
   border: none;
-  overflow: none;
+  overflow: hidden;
   position: relative;
 }
 
-div {
+.snipes-cursor {
   background: url(../img/mouse.png) no-repeat;
   height: 32px;
   left: -32px;
@@ -28,4 +23,17 @@ div {
   top: -32px;
   width: 32px;
   z-index: 999999;
+}
+
+.snipes-pulse {
+  background: none;
+  border: 3px solid #22d;
+  height: 0;
+  opacity: 1;
+  left: -32px;
+  position: absolute;
+  top: -32px;
+  width: 0;
+  z-index: 999998;
+  -webkit-border-radius: 16px;
 }
