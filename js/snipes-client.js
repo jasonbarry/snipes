@@ -51,18 +51,12 @@
             {
               // extend results of ajax call onto options              
               extend(options, JSON.parse(req.responseText));
-              // send to server.js
-              socket.emit('event', options);
             }
           }
         };
       }
-      // if not, no sweat
-      else
-      {
-        // send only js options to server.js
-        socket.emit('event', options);
-      }
+      // send to server.js, with or without of ajax'd jsonp data
+      socket.emit('event', options);
       
       window.onmousemove = function(e)
       {
