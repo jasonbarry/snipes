@@ -47,6 +47,5 @@ This is a pre-beta release, so there might be some bugs. Please report issues on
 ## Planned Features
 
   - Filter cursors by user agent, referral page, country, language, etc
-  - Release JSONP file in more languages than just PHP
   - Live heatmaps ala [heatmap.js](http://www.patrick-wied.at/static/heatmapjs/)
   - Hosting...?
