@@ -60,7 +60,7 @@
       
       window.onmousemove = function(e)
       {
-        if(preserveOnmousemove) preserveOnmousemove();
+        if(preserveOnmousemove) preserveOnmousemove(e);
         // avoid sending same coordinates twice in a row
         var date = new Date().getTime();
         if(date - prevDate > 1000 / maxRate)
@@ -80,16 +80,16 @@
       
       window.onclick = function(e)
       { 
-        if(preserveOnclick) preserveOnclick();
+        if(preserveOnclick) preserveOnclick(e);
         socket.emit('event', { a: 'click',
                                x: e.pageX, 
                                y: e.pageY 
                                });
       };
       
-      window.onresize = function()
+      window.onresize = function(e)
       { 
-        if(preserveOnresize) preserveOnresize();
+        if(preserveOnresize) preserveOnresize(e);
         socket.emit('event', { a: 'resize',
                                w: window.innerWidth, 
                                h: window.innerHeight
@@ -97,9 +97,9 @@
       };
       
       // disconnect
-      window.onunload = function()
+      window.onunload = function(e)
       { 
-        if(preserveOnunload) preserveOnunload();
+        if(preserveOnunload) preserveOnunload(e);
         socket.emit('disconnect');
       };
     };

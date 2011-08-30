@@ -15,6 +15,13 @@
   position: relative;
 }
 
+#snipes-sandbox {
+  height: 100%;
+  position: absolute;
+  overflow: hidden;
+  width: 100%;
+}
+
 .snipes-cursor {
   background: url(../img/mouse.png) no-repeat;
   height: 32px;

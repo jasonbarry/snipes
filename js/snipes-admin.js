@@ -1,4 +1,6 @@
 (function(uri, port){
+  // register global admin object
+  var admin = { w: $(window).width() };
   // tell admin overlay what page we're watching
   $("section em").html($("#frame").attr('src'));
   // attach socket.io script
@@ -11,71 +13,101 @@
     var socket = io.connect('http://'+uri+':'+port+'/admin');
   
     // below this line are interpreting messages from server.js
-    socket.on('connect', function(data){
-      if(data)
+    socket.on('connect', function(client){
+      if(client)
       {
-        var cursor = '<div id="cursor_'+data.id+'" class="snipes-cursor" title="'+JSON.stringify(data).replace(/"/g, '')+'"></div>';
-        $('body').append(cursor);
+        var cursor = '<div id="cursor_'+client.id+'" class="snipes-cursor" '+
+                      'title="'+JSON.stringify(client).replace(/"/g, '')+'"></div>';
+        $('#snipes-sandbox').append(cursor);
         // position mice that existed before admin
-        if(data.x && data.y)
+        if(client.x && client.y)
         {
-          $('#cursor_'+data.id).css({
-            left : (((($(window).width() - data.w) / 2) + 5) + data.x) + 'px',
-            top : (data.y - 4) + 'px'
+          $('#cursor_'+client.id).css({
+            left : (client.x + avg(admin.w, client.w) + 5) + 'px',
+            top  : (client.y - 4) + 'px'
           });
         }
-        // socket data -> html5 data
-        $('#cursor_'+data.id).data('data', data);
-        console.log(data);
+        // save w, x, and y in html5 data store
+        $('#cursor_'+client.id).data('data', { w: client.w, x: client.x, y: client.y });
       }
-      var concurrent = parseInt($("#snipes-concurrent span").html());
-      concurrent++;
-      $("#snipes-concurrent span").html(concurrent);
+      concurrents(1);
     });
     
-    socket.on('move', function(data){
-      $el = $('#cursor_'+data.id);
-      $el.css({
-        left : (((($(window).width() - $el.data('data').w) / 2) + 5) + data.x) + 'px',
-        top : (data.y - 4) + 'px'
-      });
+    socket.on('move', function(client){
+      var frame = document.getElementById("snipes-frame").contentWindow;
+      var $el = $('#cursor_'+client.id);
+      // TODO: somehow find the width of the child's body... that sounds dirty
+      $el.css({ left: (client.x - frame.pageXOffset + avg(admin.w, $el.data('data').w) - 5) + 'px',
+                top:  (client.y - frame.pageYOffset - 4) + 'px'
+                });
+      $.extend($el.data('data'), { x: client.x, y: client.y });
     });
     
-    socket.on('click', function(data){
-      $('body').append('<div id="pulse_'+data.id+'" class="snipes-pulse"></div>');
-      $('#pulse_'+data.id).css({ top: (data.y-4)+'px', left: (data.x+5)+'px' })
-                          .animate({ top: (data.y-20)+'px', left: (data.x-11)+'px', width: '32px', height: '32px', opacity: '0' },
-                                     500, 
-                                     function(){
-                                       $(this).remove();
-                                     }
-                                   );
+    socket.on('click', function(client){
+      var frame = document.getElementById("snipes-frame").contentWindow;
+      $('#snipes-sandbox').append('<div id="pulse_'+client.id+'" class="snipes-pulse"></div>');
+      var centerage = avg(admin.w, $('#cursor_'+client.id).data('data').w);
+      $('#pulse_'+client.id)
+        .css({ left: (client.x - frame.pageXOffset + centerage - 5) + 'px',
+               top:  (client.y - frame.pageYOffset - 4) + 'px'  
+               })
+        .animate({ left: (client.x - frame.pageXOffset + centerage - 21) + 'px', 
+                   top:  (client.y - frame.pageYOffset - 20) + 'px', 
+                   width: '32px', 
+                   height: '32px', 
+                   opacity: '0' 
+                   },
+                   500, 
+                   function(){
+                     $(this).remove();
+                   });
     });
     
-    socket.on('resize', function(data){
-      $('#cursor_'+data.id).data('data').w = data.w;
-      $('#cursor_'+data.id).data('data').h = data.h;
-      console.log(data);
+    socket.on('resize', function(client){
+      $('#cursor_'+client.id).data('data').w = client.w;
     });
     
     socket.on('disconnect', function(id){
       $('#cursor_'+id).remove();
-      console.log('disconnected: ' + id);
-      var concurrent = parseInt($("section span").html());
-      concurrent--;
-      $("section span").html(concurrent);
+      // decrement number of concurrent connections in dom
+      concurrents(-1);
     });
   };
-  
+    
   // scroll cursors with page
   window.onload = function(){
     var frame = document.getElementById("snipes-frame").contentWindow;
     frame.onscroll = function(){
       // select all dots and move them accordingly
       $("div[id^='cursor_']").each(function(){
-        // -6 for centerage
-        $(this).css({top: ($(this).data('data').y - frame.pageYOffset - 6)});
+        var client = $(this).data('data');
+        $(this).css({ left: (client.x - frame.pageXOffset + avg(admin.w, client.w) - 5) + 'px', 
+                      top:  (client.y - frame.pageYOffset - 4) + 'px'
+                      });
       });
     }
   }
+  
+  // reposition cursors on admin window resize. 
+  // should only affect x position for centering cursors
+  window.onresize = function(){
+    // select all dots and move them accordingly
+    $("div[id^='cursor_']").each(function(){
+      // override admin width global
+      admin.w = $(window).width();
+      var client = $(this).data('data');
+      $(this).css({ left: (client.x + avg(admin.w, client.w) + 5) + 'px' });
+    });
+  };
+  
+  // keeps cursor in correct position relative to centered layouts
+  var avg = function(admin_width, client_width){
+    return (admin_width - client_width) / 2;
+  };
+  
+  var concurrents = function(num){
+    var concurrent = parseInt($("#snipes-concurrent span").html());
+    concurrent += num;
+    $("#snipes-concurrent span").html(concurrent);
+  };
 })('localhost', 3000);
