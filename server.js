@@ -20,20 +20,16 @@ var client = io
       {
         bank[socket.id] = data;
       }
-      else if(data.a == 'move')
+      else if(data.a == 'move' || data.a == 'resize')
       {
-        if(bank[socket.id])
-        {
-          bank[socket.id].x = data.x;
-          bank[socket.id].y = data.y;
-        }
+        extend(bank[socket.id], data);
       }
       // append client's socket id to data
       data.id = socket.id;
-      // send to admin
+      // send event action to admin
       admin.emit(data.a, data);
       // log
-      console.log(data);
+      console.log(bank[socket.id]);
     });
     
     socket.on('disconnect', function() {
@@ -42,9 +38,8 @@ var client = io
       // send message to admin
       admin.emit('disconnect', socket.id);
       // log
-      console.log(bank);
+      //console.log(bank);
     });
-    
   });
 
 // create admin channel
@@ -55,3 +50,10 @@ var admin = io
       admin.emit('connect', bank[id]);
     }
   });
+  
+function extend(obj1, obj2){
+  for(item in obj2) {
+    obj1[item] = obj2[item];
+  }
+  return obj1;
+}
