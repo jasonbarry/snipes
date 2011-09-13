@@ -1,6 +1,6 @@
 (function(uri, port){
   // register global admin object
-  var admin = { w: $(window).width() };
+  var admin = { h: $(window).height(), w: $(window).width() };
   // tell admin overlay what page we're watching
   $("section em").html($("#frame").attr('src'));
   // attach socket.io script
@@ -29,6 +29,8 @@
         }
         // save w, x, and y in html5 data store
         $('#cursor_'+client.id).data('data', { w: client.w, x: client.x, y: client.y });
+        // fix squished frame bug in firefox (16 = scrollbar height)
+        $('#snipes-frame').attr('height', admin.h - 16);
       }
       concurrents(1);
     });
@@ -93,10 +95,12 @@
   window.onresize = function(){
     // select all dots and move them accordingly
     $("div[id^='cursor_']").each(function(){
-      // override admin width global
-      admin.w = $(window).width();
+      // override admin width and height global
+      admin = { h: $(window).height(), w: $(window).width()};
       var client = $(this).data('data');
       $(this).css({ left: (client.x + avg(admin.w, client.w) + 5) + 'px' });
+      // fix squished frame bug in firefox (16 = scrollbar height)
+      $('#snipes-frame').attr('height', admin.h - 16);
     });
   };
   
