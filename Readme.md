@@ -22,7 +22,7 @@ Try out the [demo](http://ve.kl7xwf7m.vesrv.com/) in a new window to see your cu
   - Paste the following right before your `</body>` tag on the page you'd like to observe:
 
 ```js
-<script src="./js/snipes-client.js"></script>
+<script src="./js/snipes-client.js"&gt;&lt;/script>
 ```
 
   - Edit the last line of `snipes-admin.js` and `snipes-client.js` from `'localhost'` to the URI of your server.
