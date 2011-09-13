@@ -70,7 +70,7 @@
           { 
             socket.emit('event', { a: 'move', 
                                    x: e.pageX, 
-                                   y: e.pageY 
+                                   y: e.pageY
                                    });
             prevCoords = coords;
             prevDate = date;
@@ -83,7 +83,7 @@
         if(preserveOnclick) preserveOnclick(e);
         socket.emit('event', { a: 'click',
                                x: e.pageX, 
-                               y: e.pageY 
+                               y: e.pageY
                                });
       };
       
