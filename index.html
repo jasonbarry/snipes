@@ -18,7 +18,7 @@
 	<body>
     <h1>Snipes.js</h1>
     <h2>Unobtrusive Realtime Mouse-Tracking Analytics for Node.js</h2>
-    <em>and it's &lt;4kb!</em>
+    <em>and it's &lt;4kb unminified!</em>
     
     <a href="http://github.com/jasonbarry/snipes.js">
       <img src="./unessential/forkme.png" width="149" height="149" alt="Fork me on GitHub" />
@@ -42,7 +42,7 @@
     <pre>&lt;script src="./js/snipes-client.js"&gt;&lt;/script&gt;</pre>
     <p>Edit the last line of <kbd>snipes-admin.js</kbd> and <kbd>snipes-client.js</kbd> from <kbd>'localhost'</kbd> to the URI of your server.</p>
     <p>Change the <kbd>src</kbd> attribute of the <kbd>iframe</kbd> in <kbd>admin.html</kbd> to the path of the page you're observing.</p>
-    <p>Then just <kbd>node server.js</kbd> and you're good to go!</p>
+    <p>Then just <kbd>node server.js</kbd> and you're good to go! (or <kbd>nohup node server.js &</kbd> if you want to run it in the background)</p>
     
     <h3>Dependencies</h3>
     <ul>
@@ -58,16 +58,13 @@
         <a href="http://jquery.com/">jQuery</a>
         <span> - JavaScript library, only needed on admin side.</span>
       </li>
-      <li>
-        <span>Recommended but not required: <a href="http://upstart.ubuntu.com/">upstart</a> and <a href="http://mmonit.com/monit/">monit</a>. See <a href="http://howtonode.org/deploying-node-upstart-monit">why</a>.</span>
-      </li>
     </ul>
     
     <h3>Known Issues</h3>
     <p>This is a pre-beta release, so there might be some bugs. Please report issues on the <a href="http://github.com/jasonbarry/snipes.js">GitHub</a> page.</p>
     <ul>
       <li>Admin view can only view one page at a time</li>
-      <li>Cursor positions have some issues with scrolling and fluid widths</li>
+      <li>Cursor positions are not accurate with fluid widths or when the window width is less than the body width</li>
     </ul>
     
     <h3>Planned Features</h3>

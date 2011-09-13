@@ -27,21 +27,20 @@ Try out the [demo](http://ve.kl7xwf7m.vesrv.com/) in a new window to see your cu
 
   - Edit the last line of `snipes-admin.js` and `snipes-client.js` from `'localhost'` to the URI of your server.
   - Change the `src` attribute of the `iframe` in `admin.html` to the path of the page you're observing.
-  - Then just `node server.js` and you're good to go!
+  - Then just `node server.js` and you're good to go! (or `nohup node server.js &` if you want it to run in the background)
 
 ## Dependencies
 
   - [Node.js](http://nodejs.org) - an event-driven I/O server-side JavaScript environment based on V8.
   - [Socket.io](http://socket.io) - client/server communication leveraging HTML5 WebSockets with a Flash-based fallback.
   - [jQuery](http://jquery.com) - JavaScript library, only needed on admin side.
-  - Recommended but not required: [upstart](http://upstart.ubuntu.com/) and [monit](http://mmonit.com/monit/). See [why](http://howtonode.org/deploying-node-upstart-monit).
 
 ## Known Issues
 
 This is a pre-beta release, so there might be some bugs. Please report issues on the GitHub page.
 
   - Admin view can only view one page at a time
-  - Cursor positions have some issues with scrolling and fluid widths
+  - Cursor positions are not accurate with fluid widths or when the window width is less than the body width
 
 ## Planned Features
 
