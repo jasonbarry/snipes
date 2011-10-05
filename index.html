@@ -2,16 +2,38 @@
 <html>
 	<head>
 		<title>Snipes.js - Unobtrusive Realtime Mouse-Tracking Analytics for Node.js</title>
+		<!--link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Josefin+Sans:600,700"-->
 		<style>
 		  body {
-		    background: #ccc;
+		    background: url(./img/concrete_wall_3.png) repeat;
+		    color: #222;
+		    font-family: "Josefin Sans", sans-serif;
+		    font-weight: 400;
 		    margin: 5px auto;
-		    width: 960px;
+		    width: 600px;
 		  }
 		  img {
 		    position: absolute;
 		    top: 0;
 		    right: 0;
+		  }
+		  a {
+		    color: #2e4ca4;
+		    text-decoration: none;
+		  }
+		  a:hover {
+		    border-bottom: 2px solid #2e4ca4;
+		  }
+		  h3 {
+		    border-bottom: 1px dotted #888;
+		  }
+		  p, li {
+		    line-height: 1.5;
+		  }
+		  pre, kbd {
+		    background: #ddd;
+		    border: 1px solid #bbb;
+		    padding: 2px 6px;
 		  }
 		</style>
 	</head>
@@ -38,11 +60,13 @@
     <pre>git clone git://github.com/jasonbarry/snipes.js.git</pre>
     
     <h3>How to Use</h3>
-    <p>Paste the following right before your <kbd>&lt;/body&gt;</kbd> tag on the page you'd like to observe:</p>
-    <pre>&lt;script src="./js/snipes-client.js"&gt;&lt;/script&gt;</pre>
-    <p>Edit the last line of <kbd>snipes-admin.js</kbd> and <kbd>snipes-client.js</kbd> from <kbd>'localhost'</kbd> to the URI of your server.</p>
-    <p>Change the <kbd>src</kbd> attribute of the <kbd>iframe</kbd> in <kbd>admin.html</kbd> to the path of the page you're observing.</p>
-    <p>Then just <kbd>node server.js</kbd> and you're good to go! (or <kbd>nohup node server.js &</kbd> if you want to run it in the background)</p>
+    <ol>
+      <li>Paste the following right before your <kbd>&lt;/body&gt;</kbd> tag on the page you'd like to observe:</li>
+      <pre>&lt;script src="./js/snipes-client.js"&gt;&lt;/script&gt;</pre>
+      <li>Edit the last line of <kbd>snipes-admin.js</kbd> and <kbd>snipes-client.js</kbd> from <kbd>'localhost'</kbd> to the URI of your server.</li>
+      <li>Change the <kbd>src</kbd> attribute of the <kbd>iframe</kbd> in <kbd>admin.html</kbd> to the path of the page you're observing.</li>
+      <li>Then just <kbd>node server.js</kbd> and you're good to go!<br />(or <kbd>nohup node server.js &</kbd> if you want to run it in the background)</li>
+    </ol>
     
     <h3>Dependencies</h3>
     <ul>
