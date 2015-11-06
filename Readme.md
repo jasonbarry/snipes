@@ -19,15 +19,15 @@ Run `server.js` in node (see step 4 of How to Use, below) and then open `index.h
 
 ## How to Use
 
-  1. Paste the following right before your `</body>` tag on the page you'd like to observe:
+  - Paste the following right before your `</body>` tag on the page you'd like to observe:
 
 ```js
 <script src="./js/snipes-client.js"></script>
 ```
 
-  2. Edit the last line of `snipes-admin.js` and `snipes-client.js` from `'localhost'` to the URI of your server.
-  3. Change the `src` attribute of the `iframe` in `admin.html` to the path of the page you're observing.
-  4. Then just `node server.js` and you're good to go! (or `nohup node server.js &` if you want it to run in the background)
+  - Edit the last line of `snipes-admin.js` and `snipes-client.js` from `'localhost'` to the URI of your server.
+  - Change the `src` attribute of the `iframe` in `admin.html` to the path of the page you're observing.
+  - Then just `node server.js` and you're good to go! (or `nohup node server.js &` if you want it to run in the background)
 
 ## Dependencies
 
