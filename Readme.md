@@ -11,7 +11,7 @@ Unobtrusive Realtime Mouse-Tracking Analytics for Node.js
 
 ## Demo
 
-Try out the [demo](http://ve.kl7xwf7m.vesrv.com/) in a new window to see your cursor + the cursors of all other concurrent connections. Try it with two different browsers side by side.
+Run server.js in node (see step 4 of How to Use, below) and then open index.html in one browser window and admin.html in another. Try with multiple index.html windows open to test concurrent connections.
 
 ## How to Install
 
