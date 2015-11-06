@@ -3,11 +3,11 @@ var io = require('socket.io').listen(3000),
 
 /// config
 // send minified client
-io.enable('browser client minification');
+// io.enable('browser client minification');
 // apply etag caching logic based on version number
-io.enable('browser client etag');
+// io.enable('browser client etag');
 // reduce logging
-io.set('log level', 1);
+// io.set('log level', 1);
 
 // gather data from client channel
 var client = io
@@ -16,12 +16,10 @@ var client = io
     
     socket.on('event', function(data) {
       // store connection
-      if(data.a == 'connect')
-      {
+      if(data.a == 'connect') {
         bank[socket.id] = data;
       }
-      else if(data.a == 'move' || data.a == 'resize')
-      {
+      else if(data.a === 'move' || data.a === 'resize') {
         extend(bank[socket.id], data);
       }
       // append client's socket id to data
@@ -38,7 +36,7 @@ var client = io
       // send message to admin
       admin.emit('disconnect', socket.id);
       // log
-      //console.log(bank);
+      console.log(bank);
     });
   });
 
