@@ -10,20 +10,18 @@
   s.src = 'http://'+uri+':'+port+'/socket.io/socket.io.js';
   document.getElementsByTagName('head')[0].appendChild(s);
   // when script is finished loading, trigger snipes
-  s.onload = function()
-  {
+  s.onload = function() {
     var socket = io.connect('http://'+uri+':'+port+'/admin');
   
     // below this line are interpreting messages from server.js
-    socket.on('connect', function(client){
-      if(client)
-      {
+    socket.on('new-connect', function (client) {
+      // console.log(client);
+      if (client) {
         var cursor = '<div id="cursor_'+client.id+'" class="snipes-cursor" '+
                       'title="'+JSON.stringify(client).replace(/"/g, '')+'"></div>';
         $('#snipes-sandbox').append(cursor);
         // position mice that existed before admin
-        if(client.x && client.y)
-        {
+        if(client.x && client.y) {
           $('#cursor_'+client.id).css({
             left : (client.x + avg(admin.w, client.w) + 5) + 'px',
             top  : (client.y - 4) + 'px'
@@ -35,17 +33,19 @@
       concurrents(1);
     });
     
-    socket.on('move', function(client){
+    socket.on('move', function (client) {
+      // console.log(client);
       var frame = document.getElementById("snipes-frame").contentWindow;
       var $el = $('#cursor_'+client.id);
-      // TODO: somehow find the width of the child's body... that sounds dirty
+      // TODO: somehow find the width of the child's body... 
       $el.css({ left: (client.x - frame.pageXOffset + avg(admin.w, $el.data('data').w) - 5) + 'px',
                 top:  (client.y - frame.pageYOffset - 4) + 'px'
                 });
       $.extend($el.data('data'), { x: client.x, y: client.y });
     });
     
-    socket.on('click', function(client){
+    socket.on('click', function (client) {
+      // console.log(client);
       var frame = document.getElementById("snipes-frame").contentWindow;
       $('#snipes-sandbox').append('<div id="pulse_'+client.id+'" class="snipes-pulse"></div>');
       var centerage = avg(admin.w, $('#cursor_'+client.id).data('data').w);
@@ -65,11 +65,13 @@
                    });
     });
     
-    socket.on('resize', function(client){
+    socket.on('resize', function (client) {
+      // console.log(client);
       $('#cursor_'+client.id).data('data').w = client.w;
     });
     
-    socket.on('disconnect', function(id){
+    socket.on('disconnect', function (id) {
+      // console.log(client);
       $('#cursor_'+id).remove();
       // decrement number of concurrent connections in dom
       concurrents(-1);
@@ -109,8 +111,8 @@
     return (admin_width - client_width) / 2;
   };
   
-  var concurrents = function(num){
-    var concurrent = parseInt($("#snipes-concurrent span").html());
+  var concurrents = function (num) {
+    var concurrent = parseInt($("#snipes-concurrent span").html(), 10);
     concurrent += num;
     $("#snipes-concurrent span").html(concurrent);
   };

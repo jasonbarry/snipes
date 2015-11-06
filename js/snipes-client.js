@@ -1,7 +1,6 @@
 (function(uri, port, jsonp, maxRate){
   // make sure we're not being watched o_O
-  if(top.location == self.location)
-  {
+  if(top.location === self.location) {
     // attach socket.io script
     var s = document.createElement('script');
     s.src = 'http://'+uri+':'+port+'/socket.io/socket.io.js';
@@ -19,7 +18,7 @@
           preserveOnresize    = window.onresize,
           preserveOnunload    = window.onunload,
       
-          options = { a: 'connect',
+          options = { a: 'new-connect',
                       since: prevDate,
                       ua: navigator.userAgent,
                       cookies: document.cookie,
@@ -29,7 +28,9 @@
       // make ajax call to get more data about client
       var req = false; 
       // branch for native xhr            
-      if(window.XMLHttpRequest) req = new XMLHttpRequest();
+      if (window.XMLHttpRequest) {
+        req = new XMLHttpRequest();
+      }
       // branch for IE/Windows ActiveX version
       else if(window.ActiveXObject) {
         try { req = new ActiveXObject("Msxml2.XMLHTTP"); } 
@@ -39,12 +40,9 @@
         }
       }
       // check that we have access to ajax, just in case
-      if(req)
-      {
+      if (req) {
         req.open('GET', jsonp, true);
-        req.send(null); 
-        req.onreadystatechange = function()
-        {   
+        req.onreadystatechange = function() {   
           if(req.readyState == 4) // loaded
           {
             if(req.status == 200) // OK
@@ -54,12 +52,12 @@
             }
           }
         };
+        req.send(null); 
       }
       // send to server.js, with or without of ajax'd jsonp data
       socket.emit('event', options);
       
-      window.onmousemove = function(e)
-      {
+      window.onmousemove = function(e) {
         if(preserveOnmousemove) preserveOnmousemove(e);
         // avoid sending same coordinates twice in a row
         var date = new Date().getTime();

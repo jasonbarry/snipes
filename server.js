@@ -9,14 +9,23 @@ var io = require('socket.io').listen(3000),
 // reduce logging
 // io.set('log level', 1);
 
+// create admin channel
+var admin = io
+  .of('/admin')
+  .on('connection', function (socket) {
+    for(id in bank) {
+      admin.emit('new-connect', bank[id]);
+    }
+  });
+
 // gather data from client channel
 var client = io
   .of('/client')
-  .on('connection', function(socket) {
+  .on('connection', function (socket) {
     
-    socket.on('event', function(data) {
+    socket.on('event', function (data) {
       // store connection
-      if(data.a == 'connect') {
+      if(data.a === 'new-connect') {
         bank[socket.id] = data;
       }
       else if(data.a === 'move' || data.a === 'resize') {
@@ -27,7 +36,7 @@ var client = io
       // send event action to admin
       admin.emit(data.a, data);
       // log
-      console.log(bank[socket.id]);
+      console.log(data);
     });
     
     socket.on('disconnect', function() {
@@ -38,15 +47,6 @@ var client = io
       // log
       console.log(bank);
     });
-  });
-
-// create admin channel
-var admin = io
-  .of('/admin')
-  .on('connection', function(socket) {
-    for(id in bank) {
-      admin.emit('connect', bank[id]);
-    }
   });
   
 function extend(obj1, obj2){
