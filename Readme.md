@@ -11,7 +11,7 @@ Unobtrusive Realtime Mouse-Tracking Analytics for Node.js
 
 ## Demo
 
-Run server.js in node (see step 4 of How to Use, below) and then open index.html in one browser window and admin.html in another. Try with multiple index.html windows open to test concurrent connections.
+Run `server.js` in node (see step 4 of How to Use, below) and then open `index.html` in one browser window and `admin.html` in another. Try with multiple `index.html` windows open to test concurrent connections.
 
 ## How to Install
 
@@ -19,15 +19,15 @@ Run server.js in node (see step 4 of How to Use, below) and then open index.html
 
 ## How to Use
 
-  - Paste the following right before your `</body>` tag on the page you'd like to observe:
+  1. Paste the following right before your `</body>` tag on the page you'd like to observe:
 
 ```js
 <script src="./js/snipes-client.js"></script>
 ```
 
-  - Edit the last line of `snipes-admin.js` and `snipes-client.js` from `'localhost'` to the URI of your server.
-  - Change the `src` attribute of the `iframe` in `admin.html` to the path of the page you're observing.
-  - Then just `node server.js` and you're good to go! (or `nohup node server.js &` if you want it to run in the background)
+  2. Edit the last line of `snipes-admin.js` and `snipes-client.js` from `'localhost'` to the URI of your server.
+  3. Change the `src` attribute of the `iframe` in `admin.html` to the path of the page you're observing.
+  4. Then just `node server.js` and you're good to go! (or `nohup node server.js &` if you want it to run in the background)
 
 ## Dependencies
 
