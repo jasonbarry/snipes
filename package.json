@@ -1,0 +1,36 @@
+{
+  "name": "snipes.js",
+  "version": "1.0.0",
+  "description": "Unobtrusive realtime mouse-tracking analytics for node.js",
+  "main": "server.js",
+  "dependencies": {
+    "socket.io-client": "^1.3.7",
+    "socket.io": "^1.3.7"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "node server.js",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jasonbarry/snipes.js.git"
+  },
+  "keywords": [
+    "node",
+    "nodejs",
+    "node.js",
+    "analytics",
+    "tracking",
+    "sockets",
+    "socket.io",
+    "socket",
+    "admin"
+  ],
+  "author": "Jason Barry",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jasonbarry/snipes.js/issues"
+  },
+  "homepage": "https://github.com/jasonbarry/snipes.js#readme"
+}
