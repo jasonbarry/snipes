@@ -1,6 +1,6 @@
 {
-  "name": "snipes.js",
-  "version": "1.0.0",
+  "name": "snipes",
+  "version": "1.0.1",
   "description": "Unobtrusive realtime mouse-tracking analytics for node.js",
   "main": "server.js",
   "dependencies": {
@@ -14,7 +14,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jasonbarry/snipes.js.git"
+    "url": "git+https://github.com/jasonbarry/snipes.git"
   },
   "keywords": [
     "node",
@@ -30,7 +30,7 @@
   "author": "Jason Barry",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/jasonbarry/snipes.js/issues"
+    "url": "https://github.com/jasonbarry/snipes/issues"
   },
-  "homepage": "https://github.com/jasonbarry/snipes.js#readme"
+  "homepage": "https://github.com/jasonbarry/snipes#readme"
 }

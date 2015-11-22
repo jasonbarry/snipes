@@ -15,7 +15,11 @@ Run `server.js` in node (see step 4 of How to Use, below) and then open `index.h
 
 ## How to Install
 
-    git clone git://github.com/jasonbarry/snipes.js.git
+	npm install snipes
+	
+or
+
+    git clone git://github.com/jasonbarry/snipes.git
 
 ## How to Use
 
@@ -37,7 +41,7 @@ Run `server.js` in node (see step 4 of How to Use, below) and then open `index.h
 
 ## Known Issues
 
-This is a pre-beta release, so there might be some bugs. Please report issues on the GitHub page.
+Please report issues on the GitHub page.
 
   - Admin view can only view one page at a time
   - Cursor positions are not accurate with fluid widths or when the window width is less than the body width
